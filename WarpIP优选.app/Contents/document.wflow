@@ -207,7 +207,7 @@ curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mo
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>305.250000:795.000000</string>
+				<string>305.250000:747.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
