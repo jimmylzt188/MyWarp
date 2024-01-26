@@ -1,3 +1,60 @@
+#!/bin/bash
+
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+PLAIN='\033[0m'
+
+red() {
+    echo -e "\033[31m\033[01m$1\033[0m"
+}
+
+green() {
+    echo -e "\033[32m\033[01m$1\033[0m"
+}
+
+yellow() {
+    echo -e "\033[33m\033[01m$1\033[0m"
+}
+
+# 选择客户端 CPU 架构
+archAffix(){
+    case "$(uname -m)" in
+        i386 | i686 ) echo '386' ;;
+        x86_64 | amd64 ) echo 'amd64' ;;
+        armv8 | arm64 | aarch64 ) echo 'arm64' ;;
+        s390x ) echo 's390x' ;;
+        * ) red "不支持的CPU架构!" && exit 1 ;;
+    esac
+}
+
+endpointyx(){    
+
+    if [ -e ./warp ]; then
+        echo "warp工具存在跳过下载warp工具 直接开始"
+    else
+        echo "warp工具不存在 下载warp工具..."
+        # 下载优选工具软件，感谢某匿名网友的分享的优选工具
+        #wget https://gitlab.com/Misaka-blog/warp-script/-/raw/main/files/warp-yxip/warp-linux-$(archAffix) -O warp
+        # wget https://fastly.jsdelivr.net/gh/joyanhui/file.leiyanhui.com/@main/warp-yxip-clash/warp-yxip/warp-linux-$(archAffix) -O warp
+        # wget https://gcore.jsdelivr.net/gh/joyanhui/file.leiyanhui.com/@main/warp-yxip-clash/warp-yxip/warp-linux-$(archAffix) -O warp
+        # wget https://file.leiyanhui.com/warp-yxip-clash/warp-yxip/warp-linux-$(archAffix) -O warp
+        wget http://ghproxy.com/https://raw.githubusercontent.com/joyanhui/file.leiyanhui.com/main/warp-yxip-clash/warp-yxip/warp-linux-$(archAffix) -O warp
+    fi
+    
+    # 取消 Linux 自带的线程限制，以便生成优选 Endpoint IP
+    ulimit -n 102400
+    
+    echo "启动 WARP Endpoint IP 优选工具..."
+    chmod +x warp && ./warp >/dev/null 2>&1
+    green "测试完成 当前最优 Endpoint IP 结果如下，并已保存至 result.csv中 ："
+    cat result.csv | awk -F, '$3!="timeout ms" {print} ' | sort -t, -nk2 -nk3 | uniq | head -16 | awk -F, '{print "端点 "$1" 丢包率 "$2" 平均延迟 "$3}'
+    echo "========================"
+    green "格式化到 clash-warp.yaml"
+#output=$(cat result.csv | awk -F, 'NR>1 && $3!="timeout ms" {print}' | sort -t, -nk2 -nk3 | uniq | head -15 | awk -F, '{split($1, ip_port, ":"); print "warp"NR"  "ip_port[1]" "ip_port[2]" "ENVIRON["Pub_key"]" "ENVIRON["Pri_key"]" "}')
+    output=$(cat result.csv | awk -F, 'NR>1 && $3!="timeout ms" {print}' | sort -t, -nk2 -nk3 | uniq | head -15 | awk -F, '{split($1, ip_port, ":"); print "  - {name:  ⚡"NR",type: wireguard,server: "ip_port[1]",port: "ip_port[2]",ip: 172.16.0.2,public-key: "ENVIRON["Pub_key"]",private-key: "ENVIRON["Pri_key"]",mtu: 1280,udp: true}"}')
+#echo "$output"
+    cat > header.yaml.txt << EOF
 port: 7890
 socks-port: 7891
 allow-lan: true
@@ -5,21 +62,167 @@ mode: Rule
 log-level: info
 external-controller: :9090
 proxies:
-  - {name:  ⚡1,type: wireguard,server: 188.114.98.40,port: 890,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡2,type: wireguard,server: 188.114.99.145,port: 864,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡3,type: wireguard,server: 162.159.192.109,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡4,type: wireguard,server: 162.159.192.126,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡5,type: wireguard,server: 162.159.192.113,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡6,type: wireguard,server: 162.159.192.113,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡7,type: wireguard,server: 162.159.192.134,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡8,type: wireguard,server: 162.159.192.166,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡9,type: wireguard,server: 162.159.192.160,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡10,type: wireguard,server: 162.159.192.166,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡11,type: wireguard,server: 162.159.192.130,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡12,type: wireguard,server: 162.159.192.138,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡13,type: wireguard,server: 162.159.192.138,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡14,type: wireguard,server: 162.159.192.145,port: 4233,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
-  - {name:  ⚡15,type: wireguard,server: 162.159.192.145,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+EOF
+    echo "$output" >> header.yaml.txt
+    footer #创建后半部分
+    cat  header.yaml.txt footer.yaml.txt  > clash-warp.yaml
+    rm -f header.yaml.txt footer.yaml.txt
+    green "clash-warp.yaml 创建完成，可以直接被clash-tun使用"
+    yellow "onpenwrt openclash 可以加到计划任务中 ："
+    green "0 7 * * * cd  /opt/clash-warp-yxip && bash clash-warp-yxip.sh v4 $Pub_key $Pri_key
+  && rm -f /etc/openclash/config/clash-warp.yaml &&  cp clash-warp.yaml /etc/openclash/config/clash-warp.yaml  && service openclash restart
+"
+    # 删除 WARP Endpoint IP 优选工具及其附属文件
+    #rm -f warp ip.txt
+    rm -f ip.txt
+
+}
+
+endpoint4(){
+    # 生成优选 WARP IPv4 Endpoint IP 段列表
+    n=0
+    iplist=500
+    while true; do
+        temp[$n]=$(echo 162.159.192.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 162.159.193.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 162.159.195.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 162.159.204.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 188.114.96.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 188.114.97.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 188.114.98.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo 188.114.99.$(($RANDOM % 256)))
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+    done
+    while true; do
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 162.159.192.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 162.159.193.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 162.159.195.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 162.159.204.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 188.114.96.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 188.114.97.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 188.114.98.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo 188.114.99.$(($RANDOM % 256)))
+            n=$(($n + 1))
+        fi
+    done
+
+    # 将生成的 IP 段列表放到 ip.txt 里，待程序优选
+    echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u > ip.txt
+
+    # 启动优选程序
+    endpointyx
+}
+
+endpoint6(){
+    # 生成优选 WARP IPv6 Endpoint IP 段列表
+    n=0
+    iplist=200
+    while true; do
+        temp[$n]=$(echo [2606:4700:d0::$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2)))])
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+        temp[$n]=$(echo [2606:4700:d1::$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2)))])
+        n=$(($n + 1))
+        if [ $n -ge $iplist ]; then
+            break
+        fi
+    done
+    while true; do
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo [2606:4700:d0::$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2)))])
+            n=$(($n + 1))
+        fi
+        if [ $(echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u | wc -l) -ge $iplist ]; then
+            break
+        else
+            temp[$n]=$(echo [2606:4700:d1::$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2))):$(printf '%x\n' $(($RANDOM * 2 + $RANDOM % 2)))])
+            n=$(($n + 1))
+        fi
+    done
+
+    # 将生成的 IP 段列表放到 ip.txt 里，待程序优选
+    echo ${temp[@]} | sed -e 's/ /\n/g' | sort -u > ip.txt
+
+    # 启动优选程序
+    endpointyx
+}
+
+
+footer(){
+cat > footer.yaml.txt << EOF
 proxy-groups:
   - name: 🚀 节点选择
     type: select
@@ -9731,3 +9934,27 @@ rules:
  - PROCESS-NAME,baidunetdisk.exe,🎯 全球直连
  - GEOIP,CN,🎯 全球直连
  - MATCH,🐟 漏网之鱼
+EOF
+}
+
+
+clear
+echo -e " ${GREEN}原始脚本${PLAIN} https://gitlab.com/Misaka-blog/warp-script/"
+echo -e " ${GREEN}1.${PLAIN} ${YELLOW}bash clash-warp-yxip.sh v4 {public-key}  {private-key} ${PLAIN}WARP IPv4 Endpoint IP 优选 "
+echo -e " ${GREEN}2.${PLAIN} ${YELLOW}bash clash-warp-yxip.sh v6 {public-key}  {private-key} ${PLAIN}WARP IPv6 Endpoint IP 优选"
+echo " -------------"
+if [ ! -z "$3" ]; then
+    if [ "$1" = "v6" ]; then
+        export Pub_key=$2
+        export Pri_key=$3
+        echo "公钥 :"$Pub_key "私钥: "$Pri_key
+        endpoint6
+    else
+        export Pub_key=$2
+        export Pri_key=$3
+        echo "公钥 :"$Pub_key "私钥: "$Pri_key
+        endpoint4
+    fi
+else
+    echo "格式不对"
+fi
