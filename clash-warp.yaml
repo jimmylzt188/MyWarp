@@ -5,21 +5,21 @@ mode: Rule
 log-level: info
 external-controller: :9090
 proxies:
-  - {name:  ⚡1,type: wireguard,server: 162.159.192.107,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡2,type: wireguard,server: 162.159.192.114,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡3,type: wireguard,server: 162.159.192.114,port: 5279,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡4,type: wireguard,server: 162.159.192.107,port: 5279,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡5,type: wireguard,server: 162.159.192.129,port: 5279,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡6,type: wireguard,server: 162.159.192.122,port: 5279,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡7,type: wireguard,server: 162.159.192.129,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡8,type: wireguard,server: 162.159.192.43,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡9,type: wireguard,server: 162.159.192.111,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡10,type: wireguard,server: 162.159.192.125,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡11,type: wireguard,server: 162.159.192.148,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡12,type: wireguard,server: 162.159.192.183,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡13,type: wireguard,server: 162.159.192.43,port: 5279,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡14,type: wireguard,server: 188.114.97.71,port: 1074,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
-  - {name:  ⚡15,type: wireguard,server: 188.114.97.71,port: 987,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡1,type: wireguard,server: 188.114.97.101,port: 880,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡2,type: wireguard,server: 188.114.96.198,port: 7103,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡3,type: wireguard,server: 188.114.96.32,port: 880,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡4,type: wireguard,server: 188.114.96.58,port: 890,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡5,type: wireguard,server: 188.114.97.154,port: 7156,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡6,type: wireguard,server: 188.114.97.155,port: 987,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡7,type: wireguard,server: 188.114.96.101,port: 4500,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡8,type: wireguard,server: 188.114.96.32,port: 890,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡9,type: wireguard,server: 188.114.97.100,port: 890,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡10,type: wireguard,server: 188.114.97.137,port: 880,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡11,type: wireguard,server: 188.114.97.187,port: 7156,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡12,type: wireguard,server: 188.114.97.195,port: 7156,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡13,type: wireguard,server: 188.114.98.133,port: 7156,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡14,type: wireguard,server: 188.114.98.139,port: 7156,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
+  - {name:  ⚡15,type: wireguard,server: 188.114.98.147,port: 903,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: aJayI2YBWW48r4kjjgjOhQ7l7VUd6NFszhliFSn5bEU=,mtu: 1280,udp: true}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
