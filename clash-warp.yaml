@@ -1,40 +1,40 @@
-		mixed-port: 7890
-		allow-lan: false
-		mode: Rule
-		log-level: info
-		external-controller: 127.0.0.1:9090
-		clash-for-android:
-		    append-system-dns: false
-		hosts:
-		  mtalk.google.com: 108.177.125.188
-		dns:
-		  enable: true
-		  listen: 127.0.0.1:5335
-		  use-hosts: true
-		  default-nameserver: [223.5.5.5, 119.29.29.29]
-		  ipv6: false
-		  enhanced-mode: fake-ip
-		  fake-ip-filter: ["*.n.n.srv.nintendo.net", +.stun.playstation.net, xbox.*.*.microsoft.com, "*.msftncsi.com", "*.msftconnecttest.com", WORKGROUP, "*.lan", stun.*.*.*, stun.*.*, time.windows.com, time.nist.gov, time.apple.com, time.asia.apple.com, "*.ntp.org.cn", "*.openwrt.pool.ntp.org", time1.cloud.tencent.com, time.ustc.edu.cn, pool.ntp.org, ntp.ubuntu.com, "*.*.xboxlive.com", speedtest.cros.wr.pvp.net]
-		  nameserver: [tls://223.5.5.5:853, https://223.6.6.6/dns-query, https://120.53.53.53/dns-query]
-		  nameserver-policy: {+.tmall.com: 223.5.5.5, +.taobao.com: 223.5.5.5, +.alicdn.com: 223.5.5.5, +.aliyun.com: 223.5.5.5, +.alipay.com: 223.5.5.5, +.alibaba.com: 223.5.5.5, +.qq.com: 119.29.29.29, +.tencent.com: 119.29.29.29, +.weixin.com: 119.29.29.29, +.qpic.cn: 119.29.29.29, +.jd.com: 119.29.29.29, +.bilibili.com: 119.29.29.29, +.hdslb.com: 119.29.29.29, +.163.com: 119.29.29.29, +.126.com: 119.29.29.29, +.126.net: 119.29.29.29, +.127.net: 119.29.29.29, +.netease.com: 119.29.29.29, +.baidu.com: 223.5.5.5, +.bdstatic.com: 223.5.5.5, +.bilivideo.+: 119.29.29.29, +.iqiyi.com: 119.29.29.29, +.douyinvod.com: 180.184.1.1, +.douyin.com: 180.184.1.1, +.douyincdn.com: 180.184.1.1, +.douyinpic.com: 180.184.1.1, +.feishu.cn: 180.184.1.1}
-		  fallback: [tls://101.101.101.101:853,https://101.101.101.101/dns-query, https://public.dns.iij.jp/dns-query, https://208.67.220.220/dns-query]
-		  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32, 127.0.0.1/32], domain: [+.google.com, +.facebook.com, +.twitter.com, +.youtube.com, +.xn--ngstr-lra8j.com, +.google.cn, +.googleapis.cn, +.googleapis.com, +.gvt1.com, +.paoluz.com, +.paoluz.link, +.paoluz.xyz, +.sodacity-funk.xyz, +.nloli.xyz,+.jsdelivr.net, +.proton.me]}
+mixed-port: 7890
+allow-lan: false
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+clash-for-android:
+    append-system-dns: false
+hosts:
+  mtalk.google.com: 108.177.125.188
+dns:
+  enable: true
+  listen: 127.0.0.1:5335
+  use-hosts: true
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-filter: ["*.n.n.srv.nintendo.net", +.stun.playstation.net, xbox.*.*.microsoft.com, "*.msftncsi.com", "*.msftconnecttest.com", WORKGROUP, "*.lan", stun.*.*.*, stun.*.*, time.windows.com, time.nist.gov, time.apple.com, time.asia.apple.com, "*.ntp.org.cn", "*.openwrt.pool.ntp.org", time1.cloud.tencent.com, time.ustc.edu.cn, pool.ntp.org, ntp.ubuntu.com, "*.*.xboxlive.com", speedtest.cros.wr.pvp.net]
+  nameserver: [tls://223.5.5.5:853, https://223.6.6.6/dns-query, https://120.53.53.53/dns-query]
+  nameserver-policy: {+.tmall.com: 223.5.5.5, +.taobao.com: 223.5.5.5, +.alicdn.com: 223.5.5.5, +.aliyun.com: 223.5.5.5, +.alipay.com: 223.5.5.5, +.alibaba.com: 223.5.5.5, +.qq.com: 119.29.29.29, +.tencent.com: 119.29.29.29, +.weixin.com: 119.29.29.29, +.qpic.cn: 119.29.29.29, +.jd.com: 119.29.29.29, +.bilibili.com: 119.29.29.29, +.hdslb.com: 119.29.29.29, +.163.com: 119.29.29.29, +.126.com: 119.29.29.29, +.126.net: 119.29.29.29, +.127.net: 119.29.29.29, +.netease.com: 119.29.29.29, +.baidu.com: 223.5.5.5, +.bdstatic.com: 223.5.5.5, +.bilivideo.+: 119.29.29.29, +.iqiyi.com: 119.29.29.29, +.douyinvod.com: 180.184.1.1, +.douyin.com: 180.184.1.1, +.douyincdn.com: 180.184.1.1, +.douyinpic.com: 180.184.1.1, +.feishu.cn: 180.184.1.1}
+  fallback: [tls://101.101.101.101:853,https://101.101.101.101/dns-query, https://public.dns.iij.jp/dns-query, https://208.67.220.220/dns-query]
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32, 127.0.0.1/32], domain: [+.google.com, +.facebook.com, +.twitter.com, +.youtube.com, +.xn--ngstr-lra8j.com, +.google.cn, +.googleapis.cn, +.googleapis.com, +.gvt1.com, +.paoluz.com, +.paoluz.link, +.paoluz.xyz, +.sodacity-funk.xyz, +.nloli.xyz,+.jsdelivr.net, +.proton.me]}
 proxies:
-  - {name:  ⚡1,type: wireguard,server: 188.114.99.30,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡2,type: wireguard,server: 188.114.98.139,port: 943,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡3,type: wireguard,server: 188.114.99.85,port: 880,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡4,type: wireguard,server: 188.114.98.145,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡5,type: wireguard,server: 188.114.99.19,port: 943,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡6,type: wireguard,server: 188.114.99.49,port: 880,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡7,type: wireguard,server: 188.114.98.53,port: 943,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡8,type: wireguard,server: 188.114.98.77,port: 943,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡9,type: wireguard,server: 188.114.99.182,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡10,type: wireguard,server: 188.114.98.104,port: 3581,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡11,type: wireguard,server: 188.114.98.111,port: 7103,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡12,type: wireguard,server: 188.114.96.118,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡13,type: wireguard,server: 188.114.98.127,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡14,type: wireguard,server: 188.114.99.120,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
-  - {name:  ⚡15,type: wireguard,server: 188.114.99.120,port: 943,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true}
+  - {name:  ⚡1,type: wireguard,server: 188.114.96.134,port: 955,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡2,type: wireguard,server: 188.114.96.147,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡3,type: wireguard,server: 188.114.96.183,port: 955,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡4,type: wireguard,server: 188.114.97.194,port: 1074,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡5,type: wireguard,server: 188.114.97.39,port: 7281,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡6,type: wireguard,server: 188.114.96.216,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡7,type: wireguard,server: 188.114.96.228,port: 8319,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡8,type: wireguard,server: 188.114.96.72,port: 1074,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡9,type: wireguard,server: 188.114.97.209,port: 7281,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡10,type: wireguard,server: 188.114.97.220,port: 3476,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡11,type: wireguard,server: 188.114.97.252,port: 7281,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡12,type: wireguard,server: 188.114.97.39,port: 3476,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡13,type: wireguard,server: 188.114.97.47,port: 7281,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡14,type: wireguard,server: 188.114.98.133,port: 7281,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
+  - {name:  ⚡15,type: wireguard,server: 188.114.98.201,port: 1701,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: AMDOckhQGVWtogM5vZQd8xt9Tbb2WxvO166GfbCMhUM=,mtu: 1280,udp: true}
 proxy-groups:
   - name: 🚀 节点选择
     type: select

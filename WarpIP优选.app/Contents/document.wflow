@@ -71,7 +71,7 @@ tell application "Terminal"
         set RandomPublicKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PublicKey.txt"))
         do script "'./clash-warp-yxip.sh' v4 " &amp; quoted form of RandomPublicKey &amp; " " &amp; quoted form of RandomPrivateKey in windowID
     end tell
-    
+    delay 1
     -- 等待文件生成
     repeat
         delay 1 -- 等待1秒，避免过于频繁的检查
@@ -207,7 +207,7 @@ curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mo
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>305.250000:747.000000</string>
+				<string>386.500000:753.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
