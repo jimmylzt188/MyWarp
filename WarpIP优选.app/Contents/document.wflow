@@ -84,8 +84,6 @@ tell application "Terminal"
             exit repeat -- Exit loop if ip.txt file exists
         end if
     end repeat
-    -- File exists, assume script execution is complete, close the Terminal window
-    do script "exit" in windowID
 end tell
 END
 
@@ -107,7 +105,12 @@ sleep 5
 curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/restart" -X POST -d '{"path": "", "payload": ""}'
 
 # Switch Clash to rule mode
-curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "rule"}'</string>
+curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "rule"}'
+
+osascript &lt;&lt;END
+    tell application "Terminal" to quit
+end tell
+END</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
