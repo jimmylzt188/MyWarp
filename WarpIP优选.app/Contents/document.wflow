@@ -59,8 +59,13 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "direct"}'
-delay 1
+					<string># Sending PATCH request to a local server using cURL
+curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "direct"}'
+
+# Sleep for 1 second
+sleep 1
+
+# Execute AppleScript commands using osascript
 osascript &lt;&lt;END
 tell application "Terminal"
     activate
@@ -70,31 +75,39 @@ tell application "Terminal"
         set RandomPrivateKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PrivateKey.txt"))
         set RandomPublicKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PublicKey.txt"))
         do script "'./clash-warp-yxip.sh' v4 " &amp; quoted form of RandomPublicKey &amp; " " &amp; quoted form of RandomPrivateKey in windowID
-delay 1
     end tell
-    -- 等待文件生成
+    delay 1
+    -- Wait for file generation
     repeat
-        delay 1 -- 等待1秒，避免过于频繁的检查
-        if not (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is "exists" then
-            exit repeat -- 如果ip.txt文件不存在，退出循环
+        delay 1 -- Wait for 1 second to avoid frequent checking
+        if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is "exists" then
+            exit repeat -- Exit loop if ip.txt file exists
         end if
     end repeat
-    -- 文件不存在，假设脚本执行完成，关闭窗口
-    tell application "Terminal" to quit
+    -- File exists, assume script execution is complete, close the Terminal window
+    do script "exit" in windowID
 end tell
 END
-delay 1
--- 更新github
+
+# Sleep for 1 second
+sleep 1
+
+# Update GitHub in a subshell to avoid changing the working directory globally
+(
 cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/'
 git add .
 git commit -m "update"
 git push
-delay 5
--- 重启Clash内核
+)
+
+# Sleep for 5 seconds
+sleep 5
+
+# Restart Clash kernel
 curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/restart" -X POST -d '{"path": "", "payload": ""}'
--- 切换Clash为规则模式
-curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "rule"}'
-</string>
+
+# Switch Clash to rule mode
+curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "rule"}'</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -207,7 +220,7 @@ curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mo
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>386.500000:799.000000</string>
+				<string>386.500000:640.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
