@@ -52,7 +52,7 @@ endpointyx(){
     echo "========================"
     green "格式化到 clash-warp.yaml"
 #output=$(cat result.csv | awk -F, 'NR>1 && $3!="timeout ms" {print}' | sort -t, -nk2 -nk3 | uniq | head -15 | awk -F, '{split($1, ip_port, ":"); print "warp"NR"  "ip_port[1]" "ip_port[2]" "ENVIRON["Pub_key"]" "ENVIRON["Pri_key"]" "}')
-    output=$(cat result.csv | awk -F, 'NR>1 && $3!="timeout ms" {print}' | sort -t, -nk2 -nk3 | uniq | head -15 | awk -F, '{split($1, ip_port, ":"); print "  - {name:  ⚡"NR",type: wireguard,server: "ip_port[1]",port: "ip_port[2]",ip: 172.16.0.2,public-key: "ENVIRON["Pub_key"]",private-key: "ENVIRON["Pri_key"]",mtu: 1280,udp: true, dialer-proxy: "♻️自动选择"}"}')
+    output=$(cat result.csv | awk -F, 'NR>1 && $3!="timeout ms" {print}' | sort -t, -nk2 -nk3 | uniq | head -15 | awk -F, '{split($1, ip_port, ":"); print "  - {name:  ⚡"NR",type: wireguard,server: "ip_port[1]",port: "ip_port[2]",ip: 172.16.0.2,public-key: "ENVIRON["Pub_key"]",private-key: "ENVIRON["Pri_key"]",mtu: 1280,udp: true, dialer-proxy: '♻️自动选择'}"}')
 #echo "$output"
     cat > header.yaml.txt << EOF
 mixed-port: 7890
