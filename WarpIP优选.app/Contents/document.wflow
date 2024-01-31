@@ -85,8 +85,8 @@ tell application "Terminal"
     repeat
         delay 2 -- 等待 2 秒
         -- 检查 ip.txt 文件是否存在
-        if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is "exists" then
-            exit repeat -- 如果文件存在，则退出循环
+        if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is not "exists" then
+            exit repeat -- 如果文件不存在，则退出循环
         end if
     end repeat
     -- 文件存在，认为脚本执行完毕，关闭终端程序
