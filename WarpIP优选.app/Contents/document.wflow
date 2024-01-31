@@ -59,55 +59,60 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string># Sending PATCH request to a local server using cURL
-curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "direct"}'
+					<string># 发送 PATCH 请求到本地服务器，将Clash模式设置为直连模式
+curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "direct"}'
 
-# Sleep for 1 second
+# 等待 1 秒
 sleep 1
 
-# Execute AppleScript commands using osascript
-osascript &lt;&lt;END
+# 使用 osascript 执行 AppleScript 命令
+osascript &lt;&lt;'END'
 tell application "Terminal"
     activate
+    -- 设定工作目录
     set workingDirectory to "/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/"
+    -- 在新窗口中执行命令
     set windowID to do script "cd " &amp; quoted form of workingDirectory
     tell windowID
+        -- 读取私钥和公钥
         set RandomPrivateKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PrivateKey.txt"))
         set RandomPublicKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PublicKey.txt"))
+        -- 执行 clash-warp 脚本
         do script "'./clash-warp-yxip.sh' v4 " &amp; quoted form of RandomPublicKey &amp; " " &amp; quoted form of RandomPrivateKey in windowID
     end tell
     delay 1
-    -- Wait for file generation
+    -- 等待文件生成
     repeat
-        delay 1 -- Wait for 1 second to avoid frequent checking
+        delay 1 -- 等待 1 秒
+        -- 检查 ip.txt 文件是否存在
         if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is "exists" then
-            exit repeat -- Exit loop if ip.txt file exists
+            exit repeat -- 如果文件存在，则退出循环
         end if
     end repeat
-    -- close the Terminal window
+    -- 文件存在，认为脚本执行完毕，关闭终端程序
     tell application "Terminal" to quit
 end tell
 END
 
-# Sleep for 1 second
+# 等待 1 秒
 sleep 1
 
-# Update GitHub in a subshell to avoid changing the working directory globally
+# 在子shell中更新 GitHub 避免改变父shell的工作目录
 (
-cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/'
-git add .
-git commit -m "update"
-git push
+    cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/' &amp;&amp; \
+    git add . &amp;&amp; \
+    git commit -m "update" &amp;&amp; \
+    git push
 )
 
-# Sleep for 5 seconds
+# 等待 5 秒
 sleep 5
 
-# Restart Clash kernel
+# 发送 POST 请求重启 Clash 内核
 curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/restart" -X POST -d '{"path": "", "payload": ""}'
 
-# Switch Clash to rule mode
-curl -H 'Authorization: Bearer 7895123' 127.0.0.1:9090/configs -X PATCH -d '{"mode": "rule"}'</string>
+# 发送 PATCH 请求将 Clash 模式切换为规则模式
+curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "rule"}'</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
