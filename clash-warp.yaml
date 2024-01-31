@@ -20,7 +20,21 @@ dns:
   fallback: [tls://101.101.101.101:853,https://101.101.101.101/dns-query, https://public.dns.iij.jp/dns-query, https://208.67.220.220/dns-query]
   fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32, 127.0.0.1/32], domain: [+.google.com, +.facebook.com, +.twitter.com, +.youtube.com, +.xn--ngstr-lra8j.com, +.google.cn, +.googleapis.cn, +.googleapis.com, +.gvt1.com, +.paoluz.com, +.paoluz.link, +.paoluz.xyz, +.sodacity-funk.xyz, +.nloli.xyz,+.jsdelivr.net, +.proton.me]}
 proxies:
-
+  - {name:  ⚡1,type: wireguard,server: 188.114.99.127,port: 1014,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡2,type: wireguard,server: 188.114.97.12,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡3,type: wireguard,server: 188.114.97.73,port: 3854,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡4,type: wireguard,server: 188.114.99.19,port: 1014,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡5,type: wireguard,server: 188.114.99.19,port: 1010,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡6,type: wireguard,server: 188.114.99.105,port: 3476,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡7,type: wireguard,server: 188.114.97.107,port: 1002,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡8,type: wireguard,server: 188.114.97.254,port: 908,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡9,type: wireguard,server: 188.114.97.103,port: 1014,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡10,type: wireguard,server: 188.114.97.73,port: 7103,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡11,type: wireguard,server: 188.114.98.77,port: 934,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡12,type: wireguard,server: 188.114.99.34,port: 1010,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡13,type: wireguard,server: 188.114.98.211,port: 3476,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡14,type: wireguard,server: 188.114.98.211,port: 934,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
+  - {name:  ⚡15,type: wireguard,server: 188.114.99.42,port: 1014,ip: 172.16.0.2,public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=,private-key: +ARQXhaDLPXb0e+NUG1VXafyBIlvUhq42n8XE95urmY=,mtu: 1280,udp: true, dialer-proxy: ✅手动选}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
