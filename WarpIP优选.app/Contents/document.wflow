@@ -83,7 +83,7 @@ tell application "Terminal"
     delay 1
     -- 等待文件生成
     repeat
-        delay 1 -- 等待 1 秒
+        delay 2 -- 等待 2 秒
         -- 检查 ip.txt 文件是否存在
         if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is "exists" then
             exit repeat -- 如果文件存在，则退出循环
