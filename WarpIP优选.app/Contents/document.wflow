@@ -60,7 +60,7 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string># 发送 PATCH 请求到本地服务器，将Clash模式设置为直连模式
-curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "direct"}'
+#curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "direct"}'
 
 # 等待 1 秒
 sleep 1
@@ -225,7 +225,7 @@ curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>386.500000:640.000000</string>
+				<string>386.500000:707.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
