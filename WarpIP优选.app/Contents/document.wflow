@@ -67,7 +67,7 @@ sleep 1
 
 # 使用 osascript 执行 AppleScript 命令
 osascript &lt;&lt;'END'
-tell application "iterm2"
+tell application "iTerm2"
     activate
     -- 设定工作目录
     set workingDirectory to "/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/"
@@ -119,6 +119,72 @@ curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH
 					<string>/bin/zsh</string>
 					<key>source</key>
 					<string></string>
+				</dict>
+				<key>ActionRuntimeParameters</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<string># 发送 PATCH 请求到本地服务器，将Clash模式设置为直连模式
+curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "direct"}'
+
+# 等待 1 秒
+sleep 1
+
+# 使用 osascript 执行 AppleScript 命令
+osascript &lt;&lt;'END'
+tell application "iTerm2"
+    activate
+    -- 设定工作目录
+    set workingDirectory to "/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/"
+    -- 在新窗口中执行命令
+    set windowID to do script "cd " &amp; quoted form of workingDirectory
+    tell windowID
+        -- 读取私钥和公钥
+        set RandomPrivateKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PrivateKey.txt"))
+        set RandomPublicKey to some paragraph of (do shell script "cat " &amp; quoted form of (workingDirectory &amp; "Keys/PublicKey.txt"))
+        -- 执行 clash-warp 脚本
+        do script "'./clash-warp-yxip.sh' v4 " &amp; quoted form of RandomPublicKey &amp; " " &amp; quoted form of RandomPrivateKey in windowID
+    end tell
+    delay 1
+    -- 等待文件生成
+    repeat
+        delay 2 -- 等待 2 秒
+        -- 检查 ip.txt 文件是否存在
+        if (do shell script "test -f " &amp; quoted form of (workingDirectory &amp; "ip.txt") &amp; " &amp;&amp; echo 'exists' || echo 'not exists'") is not "exists" then
+            exit repeat -- 如果文件不存在，则退出循环
+        end if
+    end repeat
+    -- 文件存在，认为脚本执行完毕，关闭终端程序
+    tell application "Terminal" to quit
+end tell
+END
+
+# 等待 1 秒
+sleep 1
+
+# 在子shell中更新 GitHub 避免改变父shell的工作目录
+(
+    cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/' &amp;&amp; \
+    git add . &amp;&amp; \
+    git commit -m "update" &amp;&amp; \
+    git push
+)
+
+# 等待 5 秒
+sleep 5
+
+
+# 发送 PATCH 请求将 Clash 模式切换为规则模式
+curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH -d '{"mode": "rule"}'</string>
+					<key>CheckedForUserDefaultShell</key>
+					<true/>
+					<key>inputMethod</key>
+					<integer>0</integer>
+					<key>shell</key>
+					<string>/bin/zsh</string>
+					<key>source</key>
+					<string></string>
+					<key>temporary items path</key>
+					<string>/var/folders/jn/brsn77812cl5mvn97w2_1sh00000gn/T/9C826F13-04B1-439A-9DEE-5884AAE052BA/1/com.apple.RunShellScript</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.RunShellScript</string>
