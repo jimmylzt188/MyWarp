@@ -70,7 +70,7 @@ osascript &lt;&lt;'END'
 tell application "Terminal"
     activate
     -- 设定工作目录
-    set workingDirectory to "/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/"
+    set workingDirectory to "/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/Git/MyWarp/"
     -- 在新窗口中执行命令
     set windowID to do script "cd " &amp; quoted form of workingDirectory
     tell windowID
@@ -99,7 +99,7 @@ sleep 1
 
 # 在子shell中更新 GitHub 避免改变父shell的工作目录
 (
-    cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/MyWarp/' &amp;&amp; \
+    cd '/Users/jimmylzt/Library/Mobile Documents/com~apple~CloudDocs/Git/MyWarp/' &amp;&amp; \
     git add . &amp;&amp; \
     git commit -m "update" &amp;&amp; \
     git push
@@ -223,7 +223,7 @@ curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9090/configs" -X PATCH
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>386.500000:736.000000</string>
+				<string>386.500000:659.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
