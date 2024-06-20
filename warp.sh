@@ -144,7 +144,7 @@ cat <<-EOF
 	PublicKey = ${pubkey}
 	AllowedIPs = 0.0.0.0/0, ::/0
 	# If UDP 2408 is blocked, you could try UDP 500, UDP 1701, or UDP 4500.
-	Endpoint = ${endpoint4}
-	#Endpoint = ${endpoint6}
+	#Endpoint = ${endpoint4}
+	Endpoint = ${endpoint6}
 EOF
 exit 0
