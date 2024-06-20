@@ -90,8 +90,7 @@ tell application "Terminal"
         end if
     end repeat
     -- 文件存在，认为脚本执行完毕，关闭终端程序
-    tell application "Terminal" to quit
-end tell
+
 EOF
 
 # 等待 1 秒
@@ -223,7 +222,7 @@ curl -H 'Authorization: Bearer 7895123' "http://127.0.0.1:9097/configs" -X PATCH
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>386.500000:875.000000</string>
+				<string>386.500000:918.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
