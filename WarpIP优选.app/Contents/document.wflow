@@ -91,6 +91,7 @@ tell application "Terminal"
     end repeat
     -- 文件存在，认为脚本执行完毕，关闭终端程序
 
+end tell
 EOF
 
 # 等待 1 秒
