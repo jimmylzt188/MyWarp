@@ -130,13 +130,13 @@ cftoken=$(printf %s "${cfcreds}" | head -4 | tail -1)
 cat <<-EOF
 	[Interface]
 	PrivateKey = ${priv}
-	PublicKey = ${publ}
+	#PublicKey = ${publ}
 	Address = ${addr4}/32, ${addr6}/128
-	CFDeviceId = ${cfdeviceid}
-	CFAccountId = ${cfaccountid}
-	CFLicense = ${cflicense}
-	CFToken = ${cftoken}
-	CFClientId = ${cfclientid}
+	#CFDeviceId = ${cfdeviceid}
+	#CFAccountId = ${cfaccountid}
+	#CFLicense = ${cflicense}
+	#CFToken = ${cftoken}
+	#CFClientId = ${cfclientid}
 	DNS = 1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001
 	MTU = 1280
 
@@ -145,6 +145,6 @@ cat <<-EOF
 	AllowedIPs = 0.0.0.0/0, ::/0
 	# If UDP 2408 is blocked, you could try UDP 500, UDP 1701, or UDP 4500.
 	Endpoint = ${endpoint4}
-	Endpoint = ${endpoint6}
+	#Endpoint = ${endpoint6}
 EOF
 exit 0
