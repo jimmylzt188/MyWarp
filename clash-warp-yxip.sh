@@ -84,7 +84,7 @@ EOF
     rm -f header.yaml.txt footer.yaml.txt
     green "clash-warp.yaml 创建完成，可以直接被clash-tun使用"
     yellow "onpenwrt openclash 可以加到计划任务中 ："
-    green "0 7 * * * cd  /opt/clash-warp-yxip && bash clash-warp-yxip.sh v4 $Pub_key $Pri_key
+    green "0 7 * * * cd  /opt/clash-warp-yxip && bash clash-warp-yxip.sh v6 $Pub_key $Pri_key
   && rm -f /etc/openclash/config/clash-warp.yaml &&  cp clash-warp.yaml /etc/openclash/config/clash-warp.yaml  && service openclash restart
 "
     # 删除 WARP Endpoint IP 优选工具及其附属文件
